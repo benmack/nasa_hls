@@ -1,18 +1,59 @@
+from bs4 import BeautifulSoup
 import datetime
 import fnmatch
 import requests
+from subprocess import Popen, PIPE
+from tqdm import tqdm
 import urllib
 
-from bs4 import BeautifulSoup
-from tqdm import tqdm
 
+BAND_NAMES = {'S30': {'Coastal_Aerosol': 'B01',
+                      'Blue': 'B02',
+                      'Green': 'B03',
+                      'Red': 'B04',
+                      'Red_Edge1': 'B05',
+                      'Red_Edge3': 'B07',
+                      'NIR_Broad': 'B08',
+                      'NIR_Narrow': 'B8A',
+                      'Cirrus': 'B10',
+                      'SWIR1': 'B11',
+                      'SWIR2': 'B12',
+                      'QA': 'QA'},
+              'L30': {'Coastal_Aerosol': 'band01',
+                      'Blue': 'band02',
+                      'Green': 'band03',
+                      'Red': 'band04',
+                      'NIR': 'band05',
+                      'SWIR1': 'band06',
+                      'SWIR2': 'band07',
+                      'Cirrus': 'band09',
+                      'TIRS1': 'band10',
+                      'TIRS2': 'band11',
+                      'QA': 'QA'}}
+
+
+def get_cloud_coverage_from_hdf(src):
+    """Get the cloud coverage from the metadata of a nasa-hls hdf file.
+    """
+    band="QA"
+    cmd = f"gdalinfo HDF4_EOS:EOS_GRID:'{src}':Grid:{band}"
+    p = Popen(cmd, stdout=PIPE, shell=True)
+    output, err = p.communicate()
+    output = str(output)[2:-1].replace("\\n", "\n")
+    rc = p.returncode
+    cloud_coverage = None
+    for line in output.split("\n"):
+        if "cloud_coverage" in line:
+            cloud_coverage = float(line.split("=")[1].strip())
+    if cloud_coverage is None:
+        raise Exception("Could not derive cloud cover.")
+    return cloud_coverage
 
 def get_available_tiles_from_url(
         url_tiles="https://hls.gsfc.nasa.gov/wp-content/uploads/2018/10/HLS_Sentinel2_Granule.csv"):
     txt = urllib.request.urlopen(url_tiles).read()
     tiles = str(txt)[2:-5].split("\\r\\n")
     return tiles
-
 
 def parse_url(date,
               tile="33UUU",
@@ -37,7 +78,6 @@ def parse_url(date,
     hls_dataset_url = f"{base_url}/{version}/{product}/{year}/{tile[:2]}/{tile[2]}/{tile[3]}/{tile[4]}/{file_name}"
 
     return hls_dataset_url
-
 
 def convert_data(date: str) -> str:
     """Convert a date to the format '%Y%j'.

@@ -2,5 +2,9 @@ from .utils import parse_url
 from .utils import get_available_tiles_from_url
 from .utils import get_available_datasets
 from .utils import dataframe_from_urls
+from .utils import get_cloud_coverage_from_hdf
+from .utils import BAND_NAMES
+from .hdf2tiff_conversion import convert_hdf2tiffs
+from .hdf2tiff_conversion import convert_hdf2tiffs_batch
 from .download_hls_dataset import download
 from .download_hls_dataset import download_batch
