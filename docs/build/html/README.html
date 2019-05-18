@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>nasa-hls &#8212; nasa_hls 0.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="nasa-hls">
+<h1>nasa-hls<a class="headerlink" href="#nasa-hls" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference external" href="https://hls.gsfc.nasa.gov/products-description/">S30 and/or L30 data</a> from <a class="reference external" href="https://hls.gsfc.nasa.gov/">NASA’s Harmonized Landsat and Sentinel-2 project</a>.</p>
+<p>If you are lucky, your area of interest is covered by the <a class="reference external" href="https://hls.gsfc.nasa.gov/test-sites/">test sites</a> (see also the <a class="reference external" href="https://hls.gsfc.nasa.gov/wp-content/uploads/2018/10/hls1.4_coverage.jpg">map with available tiles</a>).</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>In case you have git installed you can install the package as follows:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/benmack/nasa_hls.git
+</pre></div>
+</div>
+<p>If not and you have trouble to find a way, please <a class="reference external" href="https://github.com/benmack/nasa-hls/issues">open an issue</a>.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This package requires that the GDAL command line tools.
+Specifically,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gdal_translate</span></code> is required by the function <code class="docutils literal notranslate"><span class="pre">convert_hdf2tiffs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdalinfo</span></code> is required by the function <code class="docutils literal notranslate"><span class="pre">get_cloud_coverage_from_hdf</span></code></p></li>
+</ul>
+<p>Furthermore it depends on the Python packages <em>bs4</em>, <em>requests</em> and <em>tqdm</em>.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The following guides may help you to get started with the package:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benmack/nasa-hls/blob/master/docs/Query_and_download_hls_datasets_with_nasa_hls.ipynb">Query and download HLS datasets with *nasa_hls*</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">nasa_hls</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">nasa-hls</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ben Mack.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/README.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
