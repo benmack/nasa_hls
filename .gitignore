@@ -75,4 +75,4 @@ target/
 *.qgz
 
 # for uncontrolled stuff
-*xxx_uncontrolled
+*xxx_uncontrolled*

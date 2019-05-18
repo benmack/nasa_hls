@@ -9,7 +9,7 @@ from .utils import parse_url
 log = logging.getLogger(__name__)
 
 
-def download_batch(datasets, dstdir, version="v1.4", overwrite=False):
+def download_batch(dstdir, datasets, version="v1.4", overwrite=False):
     """Download the datasets given by a dataframe as returned by ``utils.get_available_datasets``.
     """
     for i, row in tqdm(datasets.iterrows(), total=datasets.shape[0]):
@@ -18,7 +18,8 @@ def download_batch(datasets, dstdir, version="v1.4", overwrite=False):
 
 
 def download(dstdir, date, tile, product, version="v1.4", overwrite=False):
-
+    """Download a HRL dataset into directory 'dstdir' given the dataset specifications.
+    """
     def _download(src, dst, overwrite):
         if not Path(dst).exists() or overwrite:
             try:

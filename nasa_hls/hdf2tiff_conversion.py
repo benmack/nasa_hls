@@ -42,7 +42,11 @@ def convert_hdf2tiffs(hdf_path, dstdir, bands=None, max_cloud_coverage=100):
         else:
             band = BAND_NAMES[product][long_band_name]
 
-        hdf_path_str = str(hdf_path.resolve())
+        if not isinstance(hdf_path, str):
+            hdf_path_str = str(hdf_path.resolve())
+        else:
+            hdf_path = Path(hdf_path)
+            hdf_path_str = hdf_path
 
         if max_cloud_coverage < 100:
             try:
