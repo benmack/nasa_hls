@@ -14,7 +14,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'nasa_hls'
@@ -22,7 +21,7 @@ copyright = '2019, Ben Mack'
 author = 'Ben Mack'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.2'
+release = '0.0.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,6 +30,9 @@ release = '0.0.2'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
+    'nbsphinx',
+    'm2r'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

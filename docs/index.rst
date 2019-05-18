@@ -6,11 +6,16 @@
 Welcome to nasa_hls's documentation!
 ====================================
 
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   readme_link.rst
 
+   developer-area.rst
+
+   tutorials.rst
 
 Indices and tables
 ==================
