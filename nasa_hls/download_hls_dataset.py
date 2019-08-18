@@ -34,6 +34,8 @@ def download(dstdir, date, tile, product, version="v1.4", overwrite=False):
         else:
             log.debug(f"DOWNLOAD SKIPPED (FILE EXISTS): {src} TO {dst}")
 
+    if len(tile) != 5:
+        raise ValueError(f"Tilename must follow the pattern of e.g. 32TPT. Got {tile}.")
     url_hdf = parse_url(date, tile=tile, product=product, version=version)
     url_hdf_hdr = url_hdf + ".hdr"
 

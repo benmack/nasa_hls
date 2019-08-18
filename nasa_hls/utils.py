@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
+import collections
 import datetime
 import fnmatch
 import numpy as np
 import pandas as pd
+from pathlib import Path
 import rasterio
 import requests
 from subprocess import Popen, PIPE
@@ -52,21 +54,21 @@ QA_ATTRIBUTES_SHORT = ['a_clima',
                        'no_cirrus']
 
 QA_ATTRIBUTES_SHORT = ['Aerosol Quality Climatology',
-                      'Aerosol Quality Low',
-                      'Aerosol Quality Average',
-                      'Aerosol Quality  High',
-                      'Water',
-                      'Snow/ice',
-                      'Cloud shadow',
-                      'Adjacent cloud',
-                      'Cloud',
-                      'Cirrus',
-                      'No water',
-                      "No snow/ice",
-                      "No cloud shadow",
-                      "No adjacent cloud",
-                      "No cloud",
-                      "No cirrus"]
+                       'Aerosol Quality Low',
+                       'Aerosol Quality Average',
+                       'Aerosol Quality  High',
+                       'Water',
+                       'Snow/ice',
+                       'Cloud shadow',
+                       'Adjacent cloud',
+                       'Cloud',
+                       'Cirrus',
+                       'No water',
+                       'No snow/ice',
+                       'No cloud shadow',
+                       'No adjacent cloud',
+                       'No cloud',
+                       'No cirrus']
 
 
 def get_qa_look_up_table():
@@ -157,7 +159,7 @@ def hls_qa_layer_to_mask(qa_path,
         array or 0 -- Array if ``mask_path`` is given, else an array. 
     """
     if mask_path is not None:
-        if mask_path.exists() and not overwrite:
+        if Path(mask_path).exists() and not overwrite:
             print("Processing skipped. File exists.")
             return 0
     
@@ -244,6 +246,9 @@ def parse_url(date,
     """
     base_url = "https://hls.gsfc.nasa.gov/data"
 
+    if len(tile) != 5:
+        raise ValueError(f"Tilename must follow the pattern of e.g. 32TPT. Got {tile}.")
+
     date_yyyydoy = convert_date_to_Yj(date)
     year = date_yyyydoy[:4]
     doy = date_yyyydoy[4::]
@@ -302,9 +307,43 @@ def dataframe_from_urls(urls):
     datasets = pd.DataFrame(pd.Series(urls).str.split("/", expand=True))[11] \
         .str.split(".", expand=True)[[1, 2, 3]] \
         .rename({1: "product", 2: "tile", 3: "date"}, axis=1)
-    datasets.tile = datasets.tile.str.replace("T", "")
+    datasets.tile = datasets.tile.str[1::]
     datasets.date = pd.to_datetime(datasets.date, format="%Y%j")
     datasets["url"] = urls
+    return datasets
+
+
+def dataframe_from_hdf_paths(hdf_paths, add_cloud_spatial_coverages=False):
+    """Convert list of HLS dataset HDF paths in dataframe.
+
+    Returns:
+        dataframe -- with columns: path, sceneid, product, tile, date_Yj, date. 
+        Optional columns (if ``add_cloud_spatial_coverages=True`): cloud_cover, spatial_coverage
+    """
+    import pandas as pd
+    datasets = pd.DataFrame(hdf_paths, columns=["path"])
+    datasets["sceneid"] = datasets["path"].apply(lambda x: Path(x).stem)
+    datasets = pd.concat([datasets,
+                          datasets["sceneid"].str.split(".", expand=True) \
+                              .loc[:, [1, 2, 3]] \
+                              .rename({1: "product", 2: "tile", 3: "date_Yj"}, axis=1)], axis=1)
+    datasets["date"] = pd.to_datetime(datasets["date_Yj"], format="%Y%j")
+
+    cov = collections.defaultdict(list)
+    for path in datasets["path"]:
+        try:
+            tmp = get_metadata_from_hdf(path,
+                                        fields=["cloud_cover", "spatial_coverage"])
+            cov['cloud_cover'].append(tmp['cloud_cover'])
+            cov['spatial_coverage'].append(tmp['spatial_coverage'])
+        except:
+            warnings.warn(f"Could derive cloud cover and spatial coverage from {str(path)}") 
+            cov['cloud_cover'].append("None")
+            cov['spatial_coverage'].append("None")
+
+    datasets["cloud_cover"] = cov['cloud_cover']
+    datasets["spatial_coverage"] = cov['spatial_coverage']
+
     return datasets
 
 
