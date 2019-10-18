@@ -19,7 +19,7 @@ In case you have git installed you can install the package as follows:
 
     pip install git+https://github.com/benmack/nasa_hls.git
     
-If not and you have trouble to find a way, please [open an issue](https://github.com/benmack/nasa-hls/issues).
+If not and you have trouble to find a way, please [open an issue](https://github.com/benmack/nasa_hls/issues).
 
 
 ## Requirements
@@ -35,4 +35,4 @@ Furthermore it depends on the Python packages *bs4*, *requests* and *tqdm*.
 
 ## Usage
 
-There are some tutorials available in the [documentation of the package](https://benmack.github.io/nasa_hls/)
+Tutorials are available in the [documentation of the package](https://benmack.github.io/nasa_hls/build/html/index.html)

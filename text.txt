@@ -1,0 +1,3 @@
+Das ist ein Textdokument, welches in dem branch Konsti erstellt wurde.
+
+16:25 18.10.2019
