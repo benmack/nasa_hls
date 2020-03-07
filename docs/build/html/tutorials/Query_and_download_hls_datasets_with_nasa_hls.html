@@ -7,11 +7,12 @@
     <title>Query and download HLS datasets with nasa_hls &#8212; nasa_hls 0.0.3 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band" href="Working_with_HLS_datasets_and_nasa_hls.html" />
@@ -37,16 +38,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -55,13 +56,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -69,92 +70,91 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
+div.nbinput.container div.prompt pre {
     color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
+div.nboutput.container div.prompt pre {
     color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5.5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
-    padding: 0.4em;
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
+div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
 /* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput div.math p {
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -198,6 +198,27 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -236,7 +257,7 @@ div.rendered_html tbody tr:hover {
 <h1>Query and download HLS datasets with <em>nasa_hls</em><a class="headerlink" href="#Query-and-download-HLS-datasets-with-nasa_hls" title="Permalink to this headline">¶</a></h1>
 <p>This guide shows how the <em>nasa_hls</em> package can be used to query and download datasets from NASA’s Harmonized Landsat and Sentinel-2 Project (<a class="reference external" href="https://hls.gsfc.nasa.gov/">https://hls.gsfc.nasa.gov/</a>) datasets.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -252,8 +273,8 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Available-tiles">
 <h3>Available tiles<a class="headerlink" href="#Available-tiles" title="Permalink to this headline">¶</a></h3>
 <p>Get a list of available tiles (see <a class="reference external" href="https://hls.gsfc.nasa.gov/test-sites/">https://hls.gsfc.nasa.gov/test-sites/</a> for a map representation). It will be downloaded from <a class="reference external" href="https://hls.gsfc.nasa.gov/wp-content/uploads/2018/10/HLS_Sentinel2_Granule.csv">https://hls.gsfc.nasa.gov/wp-content/uploads/2018/10/HLS_Sentinel2_Granule.csv</a>.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -263,6 +284,16 @@ div.rendered_html tbody tr:hover {
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Last tiles: &quot;</span><span class="p">,</span> <span class="n">available_tiles</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Total number of tiles:  4090
+First tiles:  [&#39;01UDT&#39;, &#39;01UET&#39;, &#39;01UFT&#39;]
+Last tiles:  [&#39;56JMN&#39;, &#39;56JMP&#39;, &#39;56JMQ&#39;]
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Available-datasets">
@@ -279,7 +310,7 @@ div.rendered_html tbody tr:hover {
 <li><p>a dataframe with the URLs and the corresponding product, tile and date information.</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -298,7 +329,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████| 4/4 [00:06&lt;00:00,  1.62s/it]
+100%|██████████| 4/4 [00:04&lt;00:00,  1.19s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -326,7 +357,7 @@ Last datasets:
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -346,7 +377,7 @@ Last datasets:
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████| 4/4 [00:05&lt;00:00,  1.30s/it]
+100%|██████████| 4/4 [00:04&lt;00:00,  1.17s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -355,6 +386,14 @@ Last datasets:
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Number of datasets:  373
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -467,7 +506,7 @@ Number of datasets:  373
 </div>
 <p>You can also create the dataframe from the list of URLs with the following function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -476,7 +515,7 @@ Number of datasets:  373
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -538,7 +577,7 @@ Number of datasets:  373
 <h3>Download a single dataset<a class="headerlink" href="#Download-a-single-dataset" title="Permalink to this headline">¶</a></h3>
 <p>If you need the URL of a dataset you can parse it as follows. Note that you only get the <em>*.hdf</em> file and that for each of these files there is a corresponding <em>*.hdf.hdr</em> file.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -551,17 +590,17 @@ Number of datasets:  373
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&#39;https://hls.gsfc.nasa.gov/data/v1.4/L30/2018/32/U/N/U/HLS.L30.T32UNU.2018092.v1.4.hdf&#39;
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;https://hls.gsfc.nasa.gov/data/v1.4/L30/2018/32/U/N/U/HLS.L30.T32UNU.2018092.v1.4.hdf&#39;
+</pre></div></div>
 </div>
 <p>You can also download the product directly. Note, that both the <em>.hdf</em> and <em>.hdf.hdr</em> files will be downloaded and as long as <code class="docutils literal notranslate"><span class="pre">overwrite=False</span></code> the files will only be downloaded if they do not already exist at the destination location.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -574,13 +613,13 @@ Number of datasets:  373
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>0
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
 </div>
 <p>Note that you get an <code class="docutils literal notranslate"><span class="pre">HTTPError</span></code> if the url does not exist. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nasa_hls</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">dstdir</span><span class="o">=</span><span class="s2">&quot;./xxx_uncontrolled_hls/downloads&quot;</span><span class="p">,</span>
@@ -606,7 +645,7 @@ Number of datasets:  373
 <p>Given a dataframe as the one returned by <code class="docutils literal notranslate"><span class="pre">dataframe_from_urls</span></code> it is possible to download a batch of datasets. That means we can filter the the data and download what we need.</p>
 <p>For example, set us find April scenes of the tile 32UNU where we have a LS and S-2 aquisition on the same day.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -626,7 +665,7 @@ Number of datasets:  373
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -744,7 +783,7 @@ Number of datasets:  373
 </div>
 <p>And download the matching datasets:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -760,11 +799,11 @@ Number of datasets:  373
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████| 8/8 [15:28&lt;00:00, 116.04s/it]
+100%|██████████| 8/8 [07:48&lt;00:00, 58.61s/it]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -776,7 +815,7 @@ Number of datasets:  373
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -911,7 +950,7 @@ Number of datasets:  373
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -949,6 +988,7 @@ Number of datasets:  373
 <li class="toctree-l2"><a class="reference internal" href="Working_with_HLS_datasets_and_nasa_hls.html">Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog_link.html">Changelog</a></li>
 </ul>
 
 <div class="relations">
@@ -963,15 +1003,15 @@ Number of datasets:  373
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -988,7 +1028,7 @@ Number of datasets:  373
       &copy;2019, Ben Mack.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

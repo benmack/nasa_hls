@@ -7,13 +7,15 @@
     <title>Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band &#8212; nasa_hls 0.0.3 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Changelog" href="../changelog_link.html" />
     <link rel="prev" title="Query and download HLS datasets with nasa_hls" href="Query_and_download_hls_datasets_with_nasa_hls.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,16 +38,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -54,13 +56,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -68,92 +70,91 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
+div.nbinput.container div.prompt pre {
     color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
+div.nboutput.container div.prompt pre {
     color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5.5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
-    padding: 0.4em;
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
+div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
 /* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput div.math p {
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -196,6 +197,27 @@ div.nboutput div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -250,7 +272,7 @@ div.rendered_html tbody tr:hover {
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">rasterio</span>
 
@@ -422,7 +444,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
 <span></span>%%bash
-gdalinfo ./xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4/HLS.L30.T32UNU.2018092.v1.4__QA.tif
+gdalinfo ./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf
 </pre></div>
 </div>
 </div>
@@ -431,31 +453,11 @@ gdalinfo ./xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4/HLS.L30.T32
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Driver: GTiff/GeoTIFF
-Files: ./xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4/HLS.L30.T32UNU.2018092.v1.4__QA.tif
-       ./xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4/HLS.L30.T32UNU.2018092.v1.4__QA.tif.aux.xml
-Size is 3660, 3660
-Coordinate System is:
-PROJCS[&#34;UTM Zone 32, Northern Hemisphere&#34;,
-    GEOGCS[&#34;Unknown datum based upon the WGS 84 ellipsoid&#34;,
-        DATUM[&#34;Not_specified_based_on_WGS_84_spheroid&#34;,
-            SPHEROID[&#34;WGS 84&#34;,6378137,298.257223563,
-                AUTHORITY[&#34;EPSG&#34;,&#34;7030&#34;]]],
-        PRIMEM[&#34;Greenwich&#34;,0],
-        UNIT[&#34;degree&#34;,0.0174532925199433]],
-    PROJECTION[&#34;Transverse_Mercator&#34;],
-    PARAMETER[&#34;latitude_of_origin&#34;,0],
-    PARAMETER[&#34;central_meridian&#34;,9],
-    PARAMETER[&#34;scale_factor&#34;,0.9996],
-    PARAMETER[&#34;false_easting&#34;,500000],
-    PARAMETER[&#34;false_northing&#34;,0],
-    UNIT[&#34;metre&#34;,1,
-        AUTHORITY[&#34;EPSG&#34;,&#34;9001&#34;]]]
-Origin = (499980.000000000000000,5400000.000000000000000)
-Pixel Size = (30.000000000000000,-30.000000000000000)
+Driver: HDF4/Hierarchical Data Format Release 4
+Files: ./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf
+Size is 512, 512
 Metadata:
   ACCODE=LaSRCL8V3.5.5; LaSRCL8V3.5.5
-  AREA_OR_POINT=Area
   arop_ave_xshift(meters)=-10.5, -17.0999999999767
   arop_ave_yshift(meters)=-10.5, -10.5
   arop_ncp=156, 364
@@ -473,19 +475,6 @@ Metadata:
   NBAR_Solar_Zenith=50.3345670872353
   NCOLS=3660
   NROWS=3660
-  QA description=Bits are listed from the MSB (bit 7) to the LSB (bit 0):
-7-6    aerosol:
-       00 - climatology
-       01 - low
-       10 - average
-       11 - high
-5      water
-4      snow/ice
-3      cloud shadow
-2      adjacent to cloud
-1      cloud
-0      cirrus
-
   SENSING_TIME=2018-04-02T10:03:11.3268150Z; 2018-04-02T10:03:35.2051460Z
   SENSOR=OLI_TIRS; OLI_TIRS
   SENTINEL2_TILEID=32UNU
@@ -496,22 +485,35 @@ Metadata:
   ULX=499980
   ULY=5400000
   USGS_SOFTWARE=LPGS_13.0.0
-Image Structure Metadata:
-  INTERLEAVE=BAND
+Subdatasets:
+  SUBDATASET_1_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band01
+  SUBDATASET_1_DESC=[3660x3660] band01 Grid (16-bit integer)
+  SUBDATASET_2_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band02
+  SUBDATASET_2_DESC=[3660x3660] band02 Grid (16-bit integer)
+  SUBDATASET_3_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band03
+  SUBDATASET_3_DESC=[3660x3660] band03 Grid (16-bit integer)
+  SUBDATASET_4_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band04
+  SUBDATASET_4_DESC=[3660x3660] band04 Grid (16-bit integer)
+  SUBDATASET_5_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band05
+  SUBDATASET_5_DESC=[3660x3660] band05 Grid (16-bit integer)
+  SUBDATASET_6_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band06
+  SUBDATASET_6_DESC=[3660x3660] band06 Grid (16-bit integer)
+  SUBDATASET_7_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band07
+  SUBDATASET_7_DESC=[3660x3660] band07 Grid (16-bit integer)
+  SUBDATASET_8_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band09
+  SUBDATASET_8_DESC=[3660x3660] band09 Grid (16-bit integer)
+  SUBDATASET_9_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band10
+  SUBDATASET_9_DESC=[3660x3660] band10 Grid (16-bit integer)
+  SUBDATASET_10_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:band11
+  SUBDATASET_10_DESC=[3660x3660] band11 Grid (16-bit integer)
+  SUBDATASET_11_NAME=HDF4_EOS:EOS_GRID:&#34;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&#34;:Grid:QA
+  SUBDATASET_11_DESC=[3660x3660] QA Grid (8-bit unsigned integer)
 Corner Coordinates:
-Upper Left  (  499980.000, 5400000.000) (  8d59&#39;59.02&#34;E, 48d45&#39;10.85&#34;N)
-Lower Left  (  499980.000, 5290200.000) (  8d59&#39;59.04&#34;E, 47d45&#39;54.60&#34;N)
-Upper Right (  609780.000, 5400000.000) ( 10d29&#39;35.77&#34;E, 48d44&#39;36.01&#34;N)
-Lower Right (  609780.000, 5290200.000) ( 10d27&#39;53.23&#34;E, 47d45&#39;20.95&#34;N)
-Center      (  554880.000, 5345100.000) (  9d44&#39;21.77&#34;E, 48d15&#39;24.24&#34;N)
-Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
-  Min=64.000 Max=255.000
-  Minimum=64.000, Maximum=255.000, Mean=224.097, StdDev=54.217
-  Metadata:
-    STATISTICS_MAXIMUM=255
-    STATISTICS_MEAN=224.09702558371
-    STATISTICS_MINIMUM=64
-    STATISTICS_STDDEV=54.216658651705
+Upper Left  (    0.0,    0.0)
+Lower Left  (    0.0,  512.0)
+Upper Right (  512.0,    0.0)
+Lower Right (  512.0,  512.0)
+Center      (  256.0,  256.0)
 </pre></div></div>
 </div>
 <p>The values for the fields separated from its values with a ‘=’ derived given a HDF file.</p>
@@ -538,10 +540,10 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>{&#39;cloud_cover&#39;: 24.0, &#39;spatial_coverage&#39;: 29.0}
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;cloud_cover&#39;: 24.0, &#39;spatial_coverage&#39;: 29.0}
+</pre></div></div>
 </div>
 <p>Note that you will still get a dictionary back even if a specified field cannot be found. However you should get a warning for each field that could not be found.</p>
 <div class="nbinput docutils container">
@@ -559,9 +561,9 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/home/ben/Devel/Packages/nasa_hls/nasa_hls/utils.py:206: UserWarning: Could not find metadata for field &#39;ZZZZZ&#39;.
+/home/ben/Devel/Repos_Py/nasa_hls/nasa_hls/utils.py:210: UserWarning: Could not find metadata for field &#39;ZZZZZ&#39;.
   warnings.warn(f&#34;Could not find metadata for field &#39;{field}&#39;.&#34;)
-/home/ben/Devel/Packages/nasa_hls/nasa_hls/utils.py:206: UserWarning: Could not find metadata for field &#39;DUBIDUBIDUUU&#39;.
+/home/ben/Devel/Repos_Py/nasa_hls/nasa_hls/utils.py:210: UserWarning: Could not find metadata for field &#39;DUBIDUBIDUUU&#39;.
   warnings.warn(f&#34;Could not find metadata for field &#39;{field}&#39;.&#34;)
 </pre></div></div>
 </div>
@@ -569,10 +571,10 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>{&#39;cloud_cover&#39;: 24.0}
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;cloud_cover&#39;: 24.0}
+</pre></div></div>
 </div>
 <p>Here we derive the cloud cover and spatial coverage for all the downloaded scenes.</p>
 <div class="nbinput docutils container">
@@ -689,10 +691,10 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f1f8ffd2978&gt;
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5f705a8b80&gt;
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -704,6 +706,8 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 </div>
 <div class="section" id="Convert-HDF-to-single-layer-GeoTIFFs">
 <h2>Convert HDF to single-layer GeoTIFFs<a class="headerlink" href="#Convert-HDF-to-single-layer-GeoTIFFs" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note</strong>: Starting from <strong>nasa_hls</strong> version 0.1.1 you can also convert the data to Cloud Optimized GeoTIFFs (COG). This also requires GDAL &gt;= 3.1.</p>
+<p>To create COGs use teh option <code class="docutils literal notranslate"><span class="pre">gdal_translate_options=&quot;-of</span> <span class="pre">COG&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">convert_hdf2tiffs</span></code>.</p>
 <div class="section" id="Single-scene">
 <h3>Single scene<a class="headerlink" href="#Single-scene" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
@@ -711,14 +715,12 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nasa_hls</span><span class="o">.</span><span class="n">convert_hdf2tiffs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&quot;</span><span class="p">),</span>
+<span></span><span class="c1"># L30</span>
+<span class="n">nasa_hls</span><span class="o">.</span><span class="n">convert_hdf2tiffs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./xxx_uncontrolled_hls/downloads/HLS.L30.T32UNU.2018092.v1.4.hdf&quot;</span><span class="p">),</span>
                            <span class="n">geotiff_dir</span><span class="p">,</span>
                            <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># use this to convert only a subset of the bands</span>
-                           <span class="n">max_cloud_coverage</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># use this to only convert scenes that have lower than specified cloud cover</span>
-<span class="n">nasa_hls</span><span class="o">.</span><span class="n">convert_hdf2tiffs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./xxx_uncontrolled_hls/downloads/HLS.S30.T32UNU.2018092.v1.4.hdf&quot;</span><span class="p">),</span>
-                           <span class="n">geotiff_dir</span><span class="p">,</span>
-                           <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">max_cloud_coverage</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                           <span class="n">max_cloud_coverage</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># use this to only convert scenes that have lower than specified cloud cover</span>
+                          <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -726,14 +728,37 @@ Band 1 Block=3660x2 Type=Byte, ColorInterp=Gray
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4&#39;)
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># S30</span>
+<span class="n">nasa_hls</span><span class="o">.</span><span class="n">convert_hdf2tiffs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./xxx_uncontrolled_hls/downloads/HLS.S30.T32UNU.2018092.v1.4.hdf&quot;</span><span class="p">),</span>
+                           <span class="n">geotiff_dir</span><span class="p">,</span>
+                           <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">max_cloud_coverage</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                          <span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4&#39;)
+</pre></div></div>
+</div>
 <p>As a result you get all the (desired) bands in a subfolder of the destination directory. Note the differences between the L30 and S30 files.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
@@ -755,14 +780,13 @@ xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4
 ├── HLS.L30.T32UNU.2018092.v1.4__Green.tif
 ├── HLS.L30.T32UNU.2018092.v1.4__NIR.tif
 ├── HLS.L30.T32UNU.2018092.v1.4__QA.tif
-├── HLS.L30.T32UNU.2018092.v1.4__QA.tif.aux.xml
 ├── HLS.L30.T32UNU.2018092.v1.4__Red.tif
 ├── HLS.L30.T32UNU.2018092.v1.4__SWIR1.tif
 ├── HLS.L30.T32UNU.2018092.v1.4__SWIR2.tif
 ├── HLS.L30.T32UNU.2018092.v1.4__TIRS1.tif
 └── HLS.L30.T32UNU.2018092.v1.4__TIRS2.tif
 
-0 directories, 12 files
+0 directories, 11 files
 xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4
 ├── HLS.S30.T32UNU.2018092.v1.4__Blue.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__Cirrus.tif
@@ -772,19 +796,21 @@ xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4
 ├── HLS.S30.T32UNU.2018092.v1.4__NIR_Narrow.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__QA.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__Red_Edge1.tif
+├── HLS.S30.T32UNU.2018092.v1.4__Red_Edge2.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__Red_Edge3.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__Red.tif
 ├── HLS.S30.T32UNU.2018092.v1.4__SWIR1.tif
-└── HLS.S30.T32UNU.2018092.v1.4__SWIR2.tif
+├── HLS.S30.T32UNU.2018092.v1.4__SWIR2.tif
+└── HLS.S30.T32UNU.2018092.v1.4__Water_Vapor.tif
 
-0 directories, 12 files
+0 directories, 14 files
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Batch-of-scene">
 <h3>Batch of scene<a class="headerlink" href="#Batch-of-scene" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -798,20 +824,20 @@ xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████| 4/4 [00:00&lt;00:00, 925.79it/s]
+100%|██████████| 4/4 [00:29&lt;00:00,  7.28s/it]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4&#39;),
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UNU.2018092.v1.4&#39;),
  PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4&#39;),
  PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.L30.T32UPU.2018092.v1.4&#39;),
  PosixPath(&#39;xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UPU.2018092.v1.4&#39;)]
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -827,7 +853,7 @@ xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4
 <p>For illustration purposes we use the QA layer of the <em>HLS.L30.T32UNU.2018092.v1.4</em> scene.</p>
 <p>From the metadata we got the following information about the HDF file:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -836,15 +862,15 @@ xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UNU.2018092.v1.4
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>cloud_cover         24
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+cloud_cover         24
 spatial_coverage    29
 Name: HLS.L30.T32UNU.2018092.v1.4, dtype: object
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Understand-the-QA-layer">
@@ -863,7 +889,7 @@ Name: HLS.L30.T32UNU.2018092.v1.4, dtype: object
 <p>Therefore we first create a dataframe where the information of the table above is expanded for easier accessability. The dataframe can be created with <code class="docutils literal notranslate"><span class="pre">get_qa_look_up_table</span></code>.</p>
 <p>It contains the QA value (i.e. the integer in the raster), the binary string and a boolean column which indicates if for a given QA value a given QA case (i.e. a row in the table above) is met.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1183,7 +1209,7 @@ Name: HLS.L30.T32UNU.2018092.v1.4, dtype: object
 <p>As an example let us see if we can calculate the cloud cover from the QA layer by finding the right QA attributes to be masked.</p>
 <p>Let’s get the QA values of the sample scene.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1196,7 +1222,7 @@ Name: HLS.L30.T32UNU.2018092.v1.4, dtype: object
 </div>
 <p>Let’s first visualize the distribution of the values:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1220,24 +1246,24 @@ number of observations (not 255) : 3930335
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f1f8fecc710&gt;
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5f7029ee50&gt;
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_29_2.png" src="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_29_2.png" />
+<img alt="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_30_2.png" src="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_30_2.png" />
 </div>
 </div>
 <p>Let’s also calculate the percentage of pixels with respect to all pixels and with respect to the observed pixels (i.e. not 255):</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1252,7 +1278,7 @@ number of observations (not 255) : 3930335
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1463,7 +1489,7 @@ number of observations (not 255) : 3930335
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1472,19 +1498,19 @@ number of observations (not 255) : 3930335
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>cloud_cover         24
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+cloud_cover         24
 spatial_coverage    29
 Name: HLS.L30.T32UNU.2018092.v1.4, dtype: object
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 <p><strong>Spatial coverage</strong></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1505,7 +1531,7 @@ spatial coverage from QA:  29.340000000000003
 <p>With the percentages in <code class="docutils literal notranslate"><span class="pre">qa_counts</span></code> and the <code class="docutils literal notranslate"><span class="pre">lut_qa</span></code> dataframe it is now easy to see how different masking decisions influence the percentage of masked pixels for a given QA layer.</p>
 <p>The following shows my guesses to find a match for a cloud cover of 24 %.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1518,16 +1544,16 @@ spatial coverage from QA:  29.340000000000003
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>21.810000000000002
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+21.810000000000002
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1540,16 +1566,16 @@ spatial coverage from QA:  29.340000000000003
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>19.75999999999999
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+19.75999999999999
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1562,16 +1588,16 @@ spatial coverage from QA:  29.340000000000003
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>25.769999999999996
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+25.769999999999996
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1584,18 +1610,18 @@ spatial coverage from QA:  29.340000000000003
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>23.67
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23.67
+</pre></div></div>
 </div>
 <p>The winner is: cirrus, cloud and cloud shadow, which somehow makes sense.</p>
 <p>That means that we consider the following QA values as clear sky or valid pixels:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1604,15 +1630,15 @@ spatial coverage from QA:  29.340000000000003
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([  0,   4,  16,  20,  32,  36,  48,  52,  64,  68,  80,  84,  96,
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([  0,   4,  16,  20,  32,  36,  48,  52,  64,  68,  80,  84,  96,
        100, 112, 116, 128, 132, 144, 148, 160, 164, 176, 180, 192, 196,
        208, 212, 224, 228, 240, 244])
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Convert-the-QA-layer-into-a-mask">
@@ -1626,13 +1652,13 @@ spatial coverage from QA:  29.340000000000003
 <li><p><code class="docutils literal notranslate"><span class="pre">overwrite</span></code> (bool): Defines if a file existing at <code class="docutils literal notranslate"><span class="pre">mask_path</span></code> should be overwritten.</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_downloaded</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">sceneid</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span>
-    <span class="n">qa_path</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span>
+    <span class="n">qa_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="n">qa_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="k">continue</span>
 
@@ -1649,16 +1675,16 @@ spatial coverage from QA:  29.340000000000003
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">90</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">qa_path</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Number of pixels             : </span><span class="si">{n_pix}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Number of obs.               : </span><span class="si">{n_obs}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Number of clear obs.         : </span><span class="si">{n_clear}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Number of cloudy obs.        : </span><span class="si">{n_cloudy}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of pixels             : </span><span class="si">{n_pix}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of obs.               : </span><span class="si">{n_obs}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of clear obs.         : </span><span class="si">{n_clear}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of cloudy obs.        : </span><span class="si">{n_cloudy}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Cloud cover - metadata       : </span><span class="si">{row.cloud_cover}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Cloud cover - calculated     : {round(cloud_cover * 100, 1) }&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cloud cover - metadata       : </span><span class="si">{row.cloud_cover}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cloud cover - calculated     : {round(cloud_cover * 100, 1) }&quot;</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Spatial coverage - metadata  : </span><span class="si">{row.spatial_coverage}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Spatial coverage - calculated: {round((n_obs / n_pix) * 100, 1) }&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spatial coverage - metadata  : </span><span class="si">{row.spatial_coverage}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spatial coverage - calculated: {round((n_obs / n_pix) * 100, 1) }&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1716,14 +1742,14 @@ Spatial coverage - calculated: 96.4
 <div class="section" id="Visualize-the-mask">
 <h4>Visualize the mask<a class="headerlink" href="#Visualize-the-mask" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">sceneid</span> <span class="o">=</span> <span class="s2">&quot;HLS.L30.T32UNU.2018092.v1.4&quot;</span>
-<span class="n">src_nir</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__NIR.tif&#39;</span><span class="p">)</span>
-<span class="n">src_qa</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span><span class="p">)</span>
-<span class="n">qa_path</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span>
+<span class="n">src_nir</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__NIR.tif&#39;</span><span class="p">)</span>
+<span class="n">src_qa</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span><span class="p">)</span>
+<span class="n">qa_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;xxx_uncontrolled_hls/geotiffs/</span><span class="si">{sceneid}</span><span class="s1">/</span><span class="si">{sceneid}</span><span class="s1">__QA.tif&#39;</span>
 
 <span class="n">clear_arr</span> <span class="o">=</span> <span class="n">nasa_hls</span><span class="o">.</span><span class="n">hls_qa_layer_to_mask</span><span class="p">(</span><span class="n">qa_path</span><span class="p">,</span>
                                           <span class="n">qa_valid</span><span class="o">=</span><span class="n">valid</span><span class="p">,</span>
@@ -1747,7 +1773,7 @@ Spatial coverage - calculated: 96.4
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_45_0.png" src="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_45_0.png" />
+<img alt="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_46_0.png" src="../_images/tutorials_Working_with_HLS_datasets_and_nasa_hls_46_0.png" />
 </div>
 </div>
 </div>
@@ -1781,6 +1807,7 @@ Spatial coverage - calculated: 96.4
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog_link.html">Changelog</a></li>
 </ul>
 
 <div class="relations">
@@ -1789,20 +1816,21 @@ Spatial coverage - calculated: 96.4
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../tutorials.html">Tutorials</a><ul>
       <li>Previous: <a href="Query_and_download_hls_datasets_with_nasa_hls.html" title="previous chapter">Query and download HLS datasets with <em>nasa_hls</em></a></li>
+      <li>Next: <a href="../changelog_link.html" title="next chapter">Changelog</a></li>
   </ul></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -1819,7 +1847,7 @@ Spatial coverage - calculated: 96.4
       &copy;2019, Ben Mack.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
