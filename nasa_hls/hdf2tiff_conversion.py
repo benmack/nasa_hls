@@ -10,19 +10,29 @@ from .utils import get_cloud_coverage_from_hdf
 log = logging.getLogger(__name__)
 
 
-def convert_hdf2tiffs_batch(hdf_paths, dstdir, bands=None, max_cloud_coverage=100):
+def convert_hdf2tiffs_batch(hdf_paths, dstdir, bands=None, max_cloud_coverage=100,
+                            gdal_translate_options=None):
     """Convert a batch of nasa-hls hdf files to single layer file GeoTiffs."""
 
     converted = []
     for hdf_path in tqdm(hdf_paths, total=len(hdf_paths)):
         dir_tiffs = convert_hdf2tiffs(hdf_path=hdf_path, dstdir=dstdir, bands=bands,
-                                      max_cloud_coverage=max_cloud_coverage)
+                                      max_cloud_coverage=max_cloud_coverage,
+                                      gdal_translate_options=gdal_translate_options)
         if dir_tiffs is not None:
             converted.append(dir_tiffs)
     return converted
 
-def convert_hdf2tiffs(hdf_path, dstdir, bands=None, max_cloud_coverage=100):
-    """Convert (a subset of) hdf-file layers to single layer file GeoTiffs."""
+def convert_hdf2tiffs(hdf_path, dstdir, bands=None, max_cloud_coverage=100,
+                      gdal_translate_options=None):
+    """Convert (a subset of) hdf-file layers to single layer file GeoTiffs.
+    
+    Starting with GDAL 3.1 a Cloud Optimized GeoTIFF generator is available.
+    It can be used to generate COGs instead of normal GeoTIFFs.
+    For building a COG with default options simply use 
+    `gdal_translate_options='-of COG'`.
+    For more information and options see https://gdal.org/drivers/raster/cog.html.
+    """
 
     if ".L30." in str(hdf_path):
         product = "L30"
@@ -64,6 +74,8 @@ def convert_hdf2tiffs(hdf_path, dstdir, bands=None, max_cloud_coverage=100):
         dst = (dstdir / hdf_path.stem).resolve() / f"{hdf_path.stem}__{long_band_name}.tif"
         if not dst.exists():
             cmd = f"gdal_translate HDF4_EOS:EOS_GRID:'{hdf_path_str}':Grid:{band} {dst}"
+            if gdal_translate_options:
+                cmd += f" {gdal_translate_options}"
             log.debug(f"CMD: {cmd}")
             dst.parent.mkdir(exist_ok=True, parents=True)
             try:
