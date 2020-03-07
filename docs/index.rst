@@ -17,6 +17,8 @@ Welcome to nasa_hls's documentation!
 
    tutorials.rst
 
+   changelog_link.rst
+
 Indices and tables
 ==================
 
