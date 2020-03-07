@@ -1,0 +1,15 @@
+name: hls
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - bs4
+  - matplotlib
+  - pandas
+  - pytest
+  - rasterio
+  - requests
+  - sphinx
+  - tqdm
+  - jupyter
+
