@@ -1,0 +1,9 @@
+bs4
+matplotlib
+pandas
+pytest
+rasterio
+requests
+sphinx
+tqdm
+jupyterlab

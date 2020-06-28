@@ -1,15 +1,18 @@
-name: hls
+name: 
+  hls
 channels:
   - conda-forge
   - nodefaults
 dependencies:
   - bs4
+  - m2r
   - matplotlib
+  - nbsphinx
   - pandas
   - pytest
   - rasterio
   - requests
   - sphinx
+  - sphinx-click
   - tqdm
   - jupyter
-
