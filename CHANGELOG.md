@@ -4,6 +4,10 @@
 
 #### New Features
 
+#### Fixes
+
+#### Other Changes
+
 * Docker images for shell and JupyterLab
 
 * Command line interface added:
@@ -11,11 +15,7 @@
     * hls_download: nasa_hls.scripts.download:download
     * hls_convert_batch: nasa_hls.scripts.convert:convert_batch
 
-#### Fixes
-
-#### Other Changes
-
-### 0.1.1
+### 0.1.0
 
 :Date: Mar 7, 2020
 
