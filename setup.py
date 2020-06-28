@@ -26,4 +26,11 @@ setup(
     install_requires=parse_requirements("requirements.txt"),
     setup_requires=["pytest-runner"],
     tests_require=['pytest'],
+    include_package_data=True,
+    entry_points='''
+        [console_scripts]
+        hls_query=nasa_hls.scripts.query:query
+        hls_download=nasa_hls.scripts.download:download
+        hls_convert_batch=nasa_hls.scripts.convert:convert_batch
+    ''',
 )
