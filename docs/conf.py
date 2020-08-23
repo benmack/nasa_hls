@@ -17,7 +17,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'nasa_hls'
-copyright = '2019, Ben Mack'
+copyright = '2019-2020, Ben Mack'
 author = 'Ben Mack'
 
 # The full version, including alpha/beta/rc tags
