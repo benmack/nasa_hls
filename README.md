@@ -18,17 +18,19 @@ In case you have git installed you can install the package as follows:
     
 If not and you have trouble to find a way, please [open an issue](https://github.com/benmack/nasa_hls/issues).
 
+## Docker
 
-## Requirements
+You can also try the package out in a docker.
 
-This package requires that the GDAL command line tools. 
-Specifically, 
+Run an *interactive shell session* with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
 
-* ``gdal_translate`` is required by the function ``convert_hdf2tiffs``
-* ``gdalinfo`` is required by the function ``get_cloud_coverage_from_hdf``
+    docker run -it --rm -v ${PWD}:/home/hls/share benmack/nasa-hls:2020-08-23
 
-Furthermore it depends on the Python packages *bs4*, *requests* and *tqdm*.
+Run a *JupyterLab* session with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
 
+    docker run -p 8888:8888 -v ${PWD}:/home/hls/share benmack/nasa-hls-jupyterlab:2020-08-23
+
+The logs should tell you where *The Jupyter Notebook is running at *, e.g. *http://127.0.0.1:8888/lab*.
 
 ## Usage
 

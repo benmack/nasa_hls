@@ -1,5 +1,6 @@
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
+from . import scripts
 from .utils import parse_url
 from .utils import get_available_tiles_from_url
 from .utils import get_available_datasets
@@ -16,4 +17,3 @@ from .hdf2tiff_conversion import convert_hdf2tiffs
 from .hdf2tiff_conversion import convert_hdf2tiffs_batch
 from .download_hls_dataset import download
 from .download_hls_dataset import download_batch
-

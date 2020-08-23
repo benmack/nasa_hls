@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nasa_hls with docker &#8212; nasa_hls 0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="nasa-hls-with-docker">
+<h1>nasa_hls with docker<a class="headerlink" href="#nasa-hls-with-docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="query">
+<h3>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<p>Query all available HLS datasets for the LUCAS 2018 survey area:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_query</span> <span class="o">-</span><span class="n">p</span> <span class="n">L30</span><span class="p">,</span><span class="n">S30</span> <span class="o">-</span><span class="n">t</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">tiles_lucas</span><span class="o">-</span><span class="mf">2018.</span><span class="n">txt</span> <span class="o">-</span><span class="n">s</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">e</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_lucas</span><span class="o">-</span><span class="mi">2018_2015</span><span class="o">-</span><span class="mi">2020</span><span class="n">_l30</span><span class="o">-</span><span class="n">s30</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>Query all available 2018 HLS datasets for the LUCAS 2018 survey area:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_query</span> <span class="o">-</span><span class="n">p</span> <span class="n">L30</span><span class="p">,</span><span class="n">S30</span> <span class="o">-</span><span class="n">t</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">tiles_lucas</span><span class="o">-</span><span class="mf">2018.</span><span class="n">txt</span> <span class="o">-</span><span class="n">s</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">e</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_lucas</span><span class="o">-</span><span class="mi">2018_2018</span><span class="n">_l30</span><span class="o">-</span><span class="n">s30</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>Query all available 2018 HLS datasets for Germany:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_query</span> <span class="o">-</span><span class="n">p</span> <span class="n">L30</span><span class="p">,</span><span class="n">S30</span> <span class="o">-</span><span class="n">t</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">tiles_germany</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">s</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">e</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_germany_2018_l30</span><span class="o">-</span><span class="n">s30</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>Query all available 2018 HLS datasets for the five tiles 32UMU 32UPB 32UPE 32UPU 33UVT:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_query</span> <span class="o">-</span><span class="n">p</span> <span class="n">L30</span><span class="p">,</span><span class="n">S30</span> <span class="o">-</span><span class="n">t</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">tiles</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">germany</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">s</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">e</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_5</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">germany_2018_l30</span><span class="o">-</span><span class="n">s30</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download">
+<h3>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_download</span> <span class="o">-</span><span class="n">p</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_sample</span><span class="o">.</span><span class="n">csv</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span>
+
+<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_download</span> <span class="o">-</span><span class="n">p</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">query</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">datasets_5</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">germany_2018_l30</span><span class="o">-</span><span class="n">s30</span><span class="o">.</span><span class="n">csv</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span><span class="n">share</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="convert">
+<h3>Convert<a class="headerlink" href="#convert" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">datasets_downloaded_2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">23</span><span class="n">T20</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mf">03.</span><span class="n">csv</span> <span class="o">|</span> <span class="p">{</span> <span class="n">head</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">grep</span> <span class="n">HLS</span><span class="o">.</span><span class="n">S30</span><span class="p">;</span> <span class="p">}</span> <span class="o">|</span> <span class="n">head</span> <span class="o">&gt;</span> <span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">datasets_downloaded_2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">23</span><span class="n">T20</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">03</span><span class="n">_S30</span><span class="o">.</span><span class="n">csv</span>
+
+<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ben</span><span class="o">/</span><span class="n">Dev</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">rs</span><span class="o">-</span><span class="n">playground</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa_hls</span> <span class="n">hls_convert_batch</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">datasets_downloaded_2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">16</span><span class="n">T19</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mf">14.</span><span class="n">csv</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hls</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span><span class="o">-</span><span class="n">cog</span> <span class="o">-</span><span class="n">b</span> <span class="n">QA</span><span class="p">,</span><span class="n">Red</span><span class="p">,</span><span class="n">NIR</span><span class="p">,</span><span class="n">NIR_Broad</span><span class="p">,</span><span class="n">NIR_Narrow</span><span class="p">,</span><span class="n">SWIR1</span><span class="p">,</span><span class="n">SWIR2</span> <span class="o">-</span><span class="n">c</span> <span class="mi">80</span> <span class="o">--</span><span class="n">gdal_translate_options</span> <span class="s1">&#39;-of COG&#39;</span>
+</pre></div>
+</div>
+<p>=&gt; WORKS - EXCHANGE BY S30 csv</p>
+<p>PREVIOUS TRIES:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">::</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>docker run –rm –user $(id -u ben):$(id -g ben) &lt;-v /home/ben/Dev/Projects/rs-playground/hls-lucas/<a class="reference external" href="data:/home/hls/share">data:/home/hls/share</a> benmack/nasa_hls hls_convert_batch -s /home/hls/share/hls/HLS.S30.T33UVT.2018362.v1.4.hdf -d /home/hls/share/hls-cog -b QA,NIR,Red -c 80 –gdal_translate_options ‘-of COG’</p>
+</div></blockquote>
+<p>=&gt; FAILS</p>
+<p>Permission Problem?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span> <span class="o">-</span><span class="n">lah</span>
+
+<span class="c1"># OUT: -rw-r--r-- 1 root root  97M Jun 20 11:16 HLS.S30.T33UVT.2018362.v1.4.hdf</span>
+
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> <span class="n">ugoa</span><span class="o">+</span><span class="n">rwx</span> <span class="n">hls</span><span class="o">-</span><span class="n">lucas</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hls</span>
+</pre></div>
+</div>
+<p>=&gt; FAILS</p>
+<p>Driver Problem? changed base image to osgeo/gdal:ubuntu-full-latest</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm --user $(id -u ben):$(id -g ben) -v /home/ben/Dev/Projects/rs-playground/hls-lucas/data:/home/hls/share benmack/nasa_hls hls_convert_batch -s /home/hls/share/hls/HLS.S30.T33UVT.2018362.v1.4.hdf -d /home/hls/share/hls-cog -b QA,NIR,Red -c 80 --gdal_translate_options &#39;-of COG&#39;
+</pre></div>
+</div>
+<p>=&gt; OK (; - is the user necessary ?</p>
+</div>
+</div>
+</div>
+<div class="section" id="from-joplin">
+<h1>FROM joplin:<a class="headerlink" href="#from-joplin" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="using-nasa-hls-in-a-docker">
+<h1>Using nasa_hls in a docker<a class="headerlink" href="#using-nasa-hls-in-a-docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dev">
+<h2>Dev…<a class="headerlink" href="#dev" title="Permalink to this headline">¶</a></h2>
+<p>Recent gdal images: <a class="reference external" href="https://github.com/OSGeo/gdal/tree/master/gdal/docker">https://github.com/OSGeo/gdal/tree/master/gdal/docker</a></p>
+<p>Try <em>normal</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">pull</span> <span class="n">osgeo</span><span class="o">/</span><span class="n">gdal</span><span class="p">:</span><span class="n">alpine</span><span class="o">-</span><span class="n">normal</span><span class="o">-</span><span class="n">latest</span>
+</pre></div>
+</div>
+<p>Get test data, e.g. sample.tif from <a class="reference external" href="https://github.com/benmack/eo-box/raw/master/eobox/sampledata/data/lsts/LE70350322008118EDC00/LE70350322008118EDC00_b5.tif">https://github.com/benmack/eo-box/raw/master/eobox/sampledata/data/lsts/LE70350322008118EDC00/LE70350322008118EDC00_b5.tif</a></p>
+<p>Try - OK.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="n">osgeo</span><span class="o">/</span><span class="n">gdal</span><span class="p">:</span><span class="n">alpine</span><span class="o">-</span><span class="n">normal</span><span class="o">-</span><span class="n">latest</span> <span class="n">gdalinfo</span> <span class="o">--</span><span class="n">version</span>
+
+<span class="c1"># =&gt; GDAL 3.1.0dev-31b4495025a1cf4f4d9e0361915c411901cfa67d, released 2020/04/11</span>
+</pre></div>
+</div>
+<p>Convert a tif to a COG with the docker - assuming we are in docs/tutorials and the data is available:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -v /home:/home osgeo/gdal:alpine-normal-latest gdal_translate -of COG $PWD/xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UPU.2018092.v1.4/HLS.S30.T32UPU.2018092.v1.4__NIR_Broad.tif $PWD/docker/sample_cog.tif
+</pre></div>
+</div>
+<p>Get the validator <a class="reference external" href="https://raw.githubusercontent.com/OSGeo/gdal/master/gdal/swig/python/samples/validate_cloud_optimized_geotiff.py">https://raw.githubusercontent.com/OSGeo/gdal/master/gdal/swig/python/samples/validate_cloud_optimized_geotiff.py</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">docker</span><span class="o">/</span><span class="n">validate_cloud_optimized_geotiff</span><span class="o">.</span><span class="n">py</span> <span class="n">docker</span><span class="o">/</span><span class="n">sample_cog</span><span class="o">.</span><span class="n">tif</span>
+</pre></div>
+</div>
+<p>wget <a class="reference external" href="https://github.com/benmack/nasa_hls/archive/master.zip">https://github.com/benmack/nasa_hls/archive/master.zip</a></p>
+<p>unzip master.zip</p>
+<p>pip3 install ./nasa_hls_master</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">nasa_hls</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme_link.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-area.html">Developer area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog_link.html">Changelog</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019-2020, Ben Mack.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/tutorials/cli_docker_snippets.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

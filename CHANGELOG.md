@@ -1,6 +1,8 @@
 ## Changelog
 
-### master
+### 0.1.1
+
+:Date: Aug 23, 2020
 
 #### New Features
 
@@ -8,7 +10,14 @@
 
 #### Other Changes
 
-### 0.1.1
+* Docker images for shell and JupyterLab
+
+* Command line interface added:
+    * hls_query: nasa_hls.scripts.query:query
+    * hls_download: nasa_hls.scripts.download:download
+    * hls_convert_batch: nasa_hls.scripts.convert:convert_batch
+
+### 0.1.0
 
 :Date: Mar 7, 2020
 

@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Developer area &#8212; nasa_hls 0.0.3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,8 +16,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorials" href="tutorials.html" />
-    <link rel="prev" title="Getting Started" href="readme_link.html" />
+    <link rel="next" title="Changelog" href="changelog_link.html" />
+    <link rel="prev" title="CLI" href="cli.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -41,6 +42,21 @@
 the Sphinx issue
 <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues/3382">How to use github pages from master /docs folder elegantly with sphinx</a>.</p>
 </div>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="build">
+<h3>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h3>
+<p>Currently images build process is as follows (for shell and JupyterLab):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa</span><span class="o">-</span><span class="n">hls</span><span class="p">:</span><span class="mi">2020</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">23</span> <span class="o">-</span><span class="n">f</span> <span class="n">docker</span><span class="o">/</span><span class="n">Dockerfile</span> <span class="o">.</span>
+<span class="n">docker</span> <span class="n">image</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">benmack</span><span class="o">/</span><span class="n">nasa</span><span class="o">-</span><span class="n">hls</span><span class="o">-</span><span class="n">jupyterlab</span><span class="p">:</span><span class="mi">2020</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">23</span> <span class="o">-</span><span class="n">f</span> <span class="n">Dockerfile</span><span class="o">-</span><span class="n">jupyterlab</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run">
+<h3>Run<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h3>
+<p>see README.md</p>
+</div>
+</div>
 </div>
 
 
@@ -63,11 +79,13 @@ the Sphinx issue
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme_link.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer area</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
 </ul>
 
@@ -75,8 +93,8 @@ the Sphinx issue
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="readme_link.html" title="previous chapter">Getting Started</a></li>
-      <li>Next: <a href="tutorials.html" title="next chapter">Tutorials</a></li>
+      <li>Previous: <a href="cli.html" title="previous chapter">CLI</a></li>
+      <li>Next: <a href="changelog_link.html" title="next chapter">Changelog</a></li>
   </ul></li>
 </ul>
 </div>
@@ -103,10 +121,10 @@ the Sphinx issue
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, Ben Mack.
+      &copy;2019-2020, Ben Mack.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
