@@ -1,6 +1,8 @@
 ## Changelog
 
-### master
+### 0.1.1
+
+:Date: Aug 23, 2020
 
 #### New Features
 
