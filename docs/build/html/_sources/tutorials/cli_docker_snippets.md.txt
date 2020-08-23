@@ -1,0 +1,95 @@
+# nasa_hls with docker
+
+## Steps
+
+### Query
+
+Query all available HLS datasets for the LUCAS 2018 survey area:
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_query -p L30,S30 -t ./share/query/inputs/hls-tiles_lucas-2018.txt -s 2015-01-01 -e 2020-12-31 -d ./share/query/outputs/hls-datasets_lucas-2018_2015-2020_l30-s30.csv
+
+Query all available 2018 HLS datasets for the LUCAS 2018 survey area:
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_query -p L30,S30 -t ./share/query/inputs/hls-tiles_lucas-2018.txt -s 2018-01-01 -e 2018-12-31 -d ./share/query/outputs/hls-datasets_lucas-2018_2018_l30-s30.csv
+
+Query all available 2018 HLS datasets for Germany:
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_query -p L30,S30 -t ./share/query/inputs/hls-tiles_germany.txt -s 2018-01-01 -e 2018-12-31 -d ./share/query/outputs/hls-datasets_germany_2018_l30-s30.csv
+
+Query all available 2018 HLS datasets for the five tiles 32UMU 32UPB 32UPE 32UPU 33UVT:
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_query -p L30,S30 -t ./share/query/inputs/hls-tiles-5-in-germany.txt -s 2018-01-01 -e 2018-12-31 -d ./share/query/outputs/hls-datasets_5-in-germany_2018_l30-s30.csv
+
+### Download
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_download -p ./share/query/outputs/hls-datasets_sample.csv -d ./share/data/hls
+
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_download -p ./share/query/outputs/hls-datasets_5-in-germany_2018_l30-s30.csv -d ./share/data/hls
+
+### Convert
+
+    cat hls-lucas/data/hls/datasets_downloaded_2020-06-23T20:23:03.csv | { head -1; grep HLS.S30; } | head > hls-lucas/data/hls/datasets_downloaded_2020-06-23T20:23:03_S30.csv
+    
+    docker run --rm -v /home/ben/Dev/Projects/rs-playground/hls-lucas:/home/hls/share benmack/nasa_hls hls_convert_batch -s /home/hls/share/data/hls/datasets_downloaded_2020-06-16T19:39:14.csv -d /home/hls/share/data/hls-cog -b QA,Red,NIR,NIR_Broad,NIR_Narrow,SWIR1,SWIR2 -c 80 --gdal_translate_options '-of COG'
+
+=> WORKS - EXCHANGE BY S30 csv
+
+PREVIOUS TRIES:::
+
+    docker run --rm --user $(id -u ben):$(id -g ben) <-v /home/ben/Dev/Projects/rs-playground/hls-lucas/data:/home/hls/share benmack/nasa_hls hls_convert_batch -s /home/hls/share/hls/HLS.S30.T33UVT.2018362.v1.4.hdf -d /home/hls/share/hls-cog -b QA,NIR,Red -c 80 --gdal_translate_options '-of COG'
+
+=> FAILS
+
+Permission Problem?
+
+    ls hls-lucas/data/hls -lah
+
+    # OUT: -rw-r--r-- 1 root root  97M Jun 20 11:16 HLS.S30.T33UVT.2018362.v1.4.hdf
+
+    sudo chmod -R ugoa+rwx hls-lucas/data/hls
+
+=> FAILS
+
+Driver Problem? changed base image to osgeo/gdal:ubuntu-full-latest
+
+    docker run --rm --user $(id -u ben):$(id -g ben) -v /home/ben/Dev/Projects/rs-playground/hls-lucas/data:/home/hls/share benmack/nasa_hls hls_convert_batch -s /home/hls/share/hls/HLS.S30.T33UVT.2018362.v1.4.hdf -d /home/hls/share/hls-cog -b QA,NIR,Red -c 80 --gdal_translate_options '-of COG'
+
+=> OK (; - is the user necessary ?
+
+
+# FROM joplin:
+# Using nasa_hls in a docker
+
+## Dev...
+
+Recent gdal images: https://github.com/OSGeo/gdal/tree/master/gdal/docker
+
+Try *normal*
+
+    docker image pull osgeo/gdal:alpine-normal-latest
+
+Get test data, e.g. sample.tif from https://github.com/benmack/eo-box/raw/master/eobox/sampledata/data/lsts/LE70350322008118EDC00/LE70350322008118EDC00_b5.tif
+
+
+Try - OK.
+
+    docker run --rm osgeo/gdal:alpine-normal-latest gdalinfo --version
+
+    # => GDAL 3.1.0dev-31b4495025a1cf4f4d9e0361915c411901cfa67d, released 2020/04/11
+
+Convert a tif to a COG with the docker - assuming we are in docs/tutorials and the data is available:
+
+    docker run --rm -v /home:/home osgeo/gdal:alpine-normal-latest gdal_translate -of COG $PWD/xxx_uncontrolled_hls/geotiffs/HLS.S30.T32UPU.2018092.v1.4/HLS.S30.T32UPU.2018092.v1.4__NIR_Broad.tif $PWD/docker/sample_cog.tif
+
+Get the validator https://raw.githubusercontent.com/OSGeo/gdal/master/gdal/swig/python/samples/validate_cloud_optimized_geotiff.py
+
+    python docker/validate_cloud_optimized_geotiff.py docker/sample_cog.tif
+
+
+
+wget https://github.com/benmack/nasa_hls/archive/master.zip
+
+unzip master.zip
+
+pip3 install ./nasa_hls_master
+

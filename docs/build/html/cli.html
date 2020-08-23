@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLI &#8212; nasa_hls 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer area" href="developer-area.html" />
+    <link rel="prev" title="Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band" href="tutorials/Working_with_HLS_datasets_and_nasa_hls.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cli">
+<h1>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hls-query">
+<h2>hls_query<a class="headerlink" href="#hls-query" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hls_query <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-hls_query-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--products</code><code class="sig-prename descclassname"> &lt;products&gt;</code><a class="headerlink" href="#cmdoption-hls_query-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landsat (L30) and/or Sentinel-2 (S30), e.g. ‘L30,S30’</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_query-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--tiles</code><code class="sig-prename descclassname"> &lt;tiles&gt;</code><a class="headerlink" href="#cmdoption-hls_query-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of tiles, e.g. ‘32UNU,32UPU’ or path to a file with tiles in rows (32UNU
+32UPU).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_query-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--start_date</code><code class="sig-prename descclassname"> &lt;start_date&gt;</code><a class="headerlink" href="#cmdoption-hls_query-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start date (inclusive), e.g. ‘2019-01-01’</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_query-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--end_date</code><code class="sig-prename descclassname"> &lt;end_date&gt;</code><a class="headerlink" href="#cmdoption-hls_query-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>End date (inclusive), e.g. ‘2019-12-31’</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_query-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dst_path</code><code class="sig-prename descclassname"> &lt;dst_path&gt;</code><a class="headerlink" href="#cmdoption-hls_query-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of a destination CSV-file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_query-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--overwrite</code><code class="sig-prename descclassname"> &lt;overwrite&gt;</code><a class="headerlink" href="#cmdoption-hls_query-o" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="hls-download">
+<h2>hls_download<a class="headerlink" href="#hls-download" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hls_download <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-hls_download-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--path_query</code><code class="sig-prename descclassname"> &lt;path_query&gt;</code><a class="headerlink" href="#cmdoption-hls_download-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of a CSV-file as returned by nhls_query.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_download-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dir_dst</code><code class="sig-prename descclassname"> &lt;dir_dst&gt;</code><a class="headerlink" href="#cmdoption-hls_download-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destination directory for the downloaded data.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_download-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--overwrite</code><code class="sig-prename descclassname"> &lt;overwrite&gt;</code><a class="headerlink" href="#cmdoption-hls_download-o" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="hls-convert-batch">
+<h2>hls_convert_batch<a class="headerlink" href="#hls-convert-batch" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hls_convert_batch <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--src</code><code class="sig-prename descclassname"> &lt;src&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory (with .hdf files), path to one .hdf file or a csv with a ‘path’ column with paths to .hdf files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dir_dst</code><code class="sig-prename descclassname"> &lt;dir_dst&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destination directory for the converted data.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-b">
+<code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--bands</code><code class="sig-prename descclassname"> &lt;bands&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of bands. Default is None, i.e. all bands.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--max_cloud_coverage</code><code class="sig-prename descclassname"> &lt;max_cloud_coverage&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum cloud cover.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-g">
+<code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gdal_translate_options</code><code class="sig-prename descclassname"> &lt;gdal_translate_options&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-g" title="Permalink to this definition">¶</a></dt>
+<dd><p>GDAL translate options. Example 1 (build Cloud Optimized GeoTiff): ‘-of COG’. Example 2 (using quotes): ‘-of GTiff -co “TILED=YES”’.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-hls_convert_batch-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--overwrite</code><code class="sig-prename descclassname"> &lt;overwrite&gt;</code><a class="headerlink" href="#cmdoption-hls_convert_batch-o" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">nasa_hls</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hls-query">hls_query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hls-download">hls_download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hls-convert-batch">hls_convert_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer-area.html">Developer area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tutorials/Working_with_HLS_datasets_and_nasa_hls.html" title="previous chapter">Working with HLS datasets: cloud cover, GeoTIFFs, and the QA band</a></li>
+      <li>Next: <a href="developer-area.html" title="next chapter">Developer area</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ben Mack.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/cli.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
