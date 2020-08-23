@@ -1,5 +1,6 @@
 __version__ = "0.1.1"
 
+from . import scripts
 from .utils import parse_url
 from .utils import get_available_tiles_from_url
 from .utils import get_available_datasets
