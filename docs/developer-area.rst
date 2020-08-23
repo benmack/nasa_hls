@@ -14,10 +14,9 @@ Docker
 Build
 ~~~~~
 
-Currently images build process is as follows (for shell and JupyterLab):
+Currently images build process is as follows (for shell and JupyterLab)::
 
     docker image build -t benmack/nasa-hls:2020-08-23 -f docker/Dockerfile .
-
     docker image build -t benmack/nasa-hls-jupyterlab:2020-08-23 -f Dockerfile-jupyterlab . 
 
 Run
