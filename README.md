@@ -18,26 +18,19 @@ In case you have git installed you can install the package as follows:
     
 If not and you have trouble to find a way, please [open an issue](https://github.com/benmack/nasa_hls/issues).
 
-## Docker - Work in progress
+## Docker
 
-The repository now contians two Dockerfiles from which you can build Docker images that contain the source code and have the package installed.
+You can also try the package out in a docker.
 
-Currently the images are not yet available on Dockerhub (issue #7).
-You can build your own images as follows (for shell and JupyterLab):
+Run an *interactive shell session* with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
 
-    docker image build -t benmack/nasa_hls:0.1.1 .
+    docker run -it --rm -v ${PWD}:/home/hls/share benmack/nasa-hls:2020-08-23
 
-    docker image build -t benmack/nasa_hls_jupyterlab:0.1.1 -f Dockerfile-jupyterlab . 
+Run a *JupyterLab* session with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
 
-Run an interactive shell session with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
+    docker run -p 8888:8888 -v ${PWD}:/home/hls/share benmack/nasa-hls-jupyterlab:2020-08-23
 
-    docker run -it --rm -v ${PWD}:/home/hls/share benmack/nasa_hls:0.1.1
-
-Run a JupyterLab container with the current (host) working directory mounted to the *WORKDIR/share* folder of the container with:
-
-    docker run -p 8888:8888 -v ${PWD}:/home/hls/share benmack/nasa_hls_jupyterlab:0.1.1
-
-The logs should tell you where *The Jupyter Notebook is running at*, e.g. *http://127.0.0.1:8888/lab*
+The logs should tell you where *The Jupyter Notebook is running at *, e.g. *http://127.0.0.1:8888/lab*.
 
 ## Usage
 
