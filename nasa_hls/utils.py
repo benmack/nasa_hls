@@ -160,11 +160,10 @@ def hls_qa_layer_to_mask(qa_path,
     Returns:
         array or 0 -- Array if ``mask_path`` is given, else an array. 
     """
-    if mask_path is not None:
-        if Path(mask_path).exists() and not overwrite:
-            print("Processing skipped. File exists.")
-            return 0
-    
+    if mask_path is not None and Path(mask_path).exists() and not overwrite:
+        print("Processing skipped. File exists.")
+        return 0
+
     with rasterio.open(qa_path) as qa:
         meta = qa.meta
         qa_array = qa.read()
@@ -174,7 +173,7 @@ def hls_qa_layer_to_mask(qa_path,
         clear_array[qa_array == num] = 1
     if keep_255:
         clear_array[qa_array == 255] = 255
-    
+
     if mask_path is not None:
         meta.update(compress="lzw")
         with rasterio.open(mask_path, "w", **meta) as dst:
@@ -230,8 +229,7 @@ def get_cloud_coverage_from_hdf(src):
 def get_available_tiles_from_url(
         url_tiles="https://hls.gsfc.nasa.gov/wp-content/uploads/2018/10/HLS_Sentinel2_Granule.csv"):
     txt = urllib.request.urlopen(url_tiles).read()
-    tiles = str(txt)[2:-5].split("\\r\\n")
-    return tiles
+    return str(txt)[2:-5].split("\\r\\n")
 
 def parse_url(date,
               tile="33UUU",
@@ -256,9 +254,7 @@ def parse_url(date,
     doy = date_yyyydoy[4::]
 
     file_name = f"HLS.{product}.T{tile}.{year}{doy}.{version}.hdf"
-    hls_dataset_url = f"{base_url}/{version}/{product}/{year}/{tile[:2]}/{tile[2]}/{tile[3]}/{tile[4]}/{file_name}"
-
-    return hls_dataset_url
+    return f"{base_url}/{version}/{product}/{year}/{tile[:2]}/{tile[2]}/{tile[3]}/{tile[4]}/{file_name}"
 
 def convert_date_to_Yj(date: str) -> str:
     """Convert a date to the format '%Y%j'.
